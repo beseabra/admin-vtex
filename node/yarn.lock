@@ -1618,9 +1618,9 @@ apollo-utilities@^1.0.1:
     ts-invariant "^0.2.1"
     tslib "^1.9.3"
 
-"appliancetheme.admin-sandbox@https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715873698/public/@types/appliancetheme.admin-sandbox":
+"appliancetheme.admin-sandbox@https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715888612/public/@types/appliancetheme.admin-sandbox":
   version "0.0.0"
-  resolved "https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715873698/public/@types/appliancetheme.admin-sandbox#e47e241b01176b8f5b800b5a2e9ba5add9a86d42"
+  resolved "https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715888612/public/@types/appliancetheme.admin-sandbox#5f3b8f58adefdc904469f56a7597ec83c005fc77"
 
 aproba@^1.0.3:
   version "1.2.0"

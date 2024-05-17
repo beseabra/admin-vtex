@@ -19,7 +19,7 @@
     "@vtex/test-tools": "^3.3.2",
     "@vtex/tsconfig": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.5",
-    "appliancetheme.admin-sandbox": "https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715873698/public/@types/appliancetheme.admin-sandbox",
+    "appliancetheme.admin-sandbox": "https://teste--cubostecnologia.myvtex.com/_v/private/typings/linked/v1/appliancetheme.admin-sandbox@0.0.0+build1715888612/public/@types/appliancetheme.admin-sandbox",
     "graphql": "^14.6.0",
     "typescript": "3.9.7",
     "vtex.render-runtime": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime",
