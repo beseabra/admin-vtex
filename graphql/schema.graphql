@@ -1,15 +1,21 @@
 type SubCategory {
-  id: Int
-  name: String
+  id: Int!
+  name: String!
 }
 
 type Category {
-  id: Int
-  name: String
+  id: Int!
+  name: String!
   subCategories: [SubCategory]
 }
 
+type Folder {
+  name: String!
+  children: [Folder]
+}
+
 type Query {
-  helloworld: String
+  folder: Folder
   categories: [Category]
+  helloworld: String
 }

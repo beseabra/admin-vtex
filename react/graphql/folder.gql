@@ -1,0 +1,14 @@
+query {
+  folder {
+    name
+    children {
+      name
+      children {
+        name
+        children {
+          name
+        }
+      }
+    }
+  }
+}

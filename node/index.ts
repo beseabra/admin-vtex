@@ -1,5 +1,48 @@
 import { Service } from '@vtex/api'
 
+const folder = {
+  name: "",
+  children: [
+    {
+      name: "list",
+      children: [
+        { name: "Avocados" },
+        { name: "Bananas" },
+        { name: "Berries" },
+        { name: "Oranges" },
+        { name: "Pears" },
+      ],
+    },
+    {
+      name: "Drinks",
+      children: [
+        { name: "Apple Juice" },
+        { name: "Chocolate" },
+        { name: "Coffee" },
+        {
+          name: "Tea",
+          children: [
+            { name: "Black Tea" },
+            { name: "Green Tea" },
+            { name: "Red Tea" },
+            { name: "Matcha" },
+          ],
+        },
+      ],
+    },
+    {
+      name: "Vegetables",
+      children: [
+        { name: "Beets" },
+        { name: "Carrots" },
+        { name: "Celery" },
+        { name: "Lettuce" },
+        { name: "Onions" },
+      ],
+    },
+  ],
+}
+
 const categories = [
   {
     id: 123,
@@ -62,6 +105,7 @@ export default new Service({
     resolvers: {
       Query: {
         helloworld: () => `Service number: ${Math.random()}`,
+        folder: () => folder,
         categories: () => categories
       }
     }

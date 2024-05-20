@@ -1,107 +1,85 @@
 import React, { useState } from 'react'
 import { useQuery } from 'react-apollo'
-import { Box, Button, Checkbox, Divider } from 'vtex.styleguide'
-import ModalComponent from './components/Modal'
-import categoriesQuery from './graphql/categories.gql'
+import { Box, Button, Checkbox } from 'vtex.styleguide'
+import folderQuery from './graphql/folder.gql'
 
-interface SubCategory {
-  id: number
+interface Folder {
   name: string
-}
-
-interface Category {
-  id: number
-  name: string
-  subCategories: SubCategory[]
+  children?: Folder[]
 }
 
 interface QueryData {
-  categories: Category[]
+  folder: Folder
 }
 
-interface CheckedCategories {
-  [key: number]: boolean
+interface CheckedFolders {
+  [key: string]: boolean
 }
 
-interface CheckedSubCategories {
-  [key: number]: {
-    [key: number]: boolean
-  }
+interface ExpandedFolders {
+  [key: string]: boolean
 }
 
 export default function AdminExample() {
-  const { data, loading, error } = useQuery<QueryData>(categoriesQuery)
+  const { data, loading, error } = useQuery<QueryData>(folderQuery)
 
-  const [checkedCategories, setCheckedCategories] = useState<CheckedCategories>({})
-  const [checkedSubCategories, setCheckedSubCategories] = useState<CheckedSubCategories>({})
-  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [checkedFolders, setCheckedFolders] = useState<CheckedFolders>({})
+  const [expandedFolders, setExpandedFolders] = useState<ExpandedFolders>({})
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error: {error.message}</p>
 
-  const handleCategoryChange = (categoryId: number) => {
-    setCheckedCategories((prevState) => ({
+  const handleFolderChange = (folderName: string) => {
+    setCheckedFolders((prevState) => ({
       ...prevState,
-      [categoryId]: !prevState[categoryId],
+      [folderName]: !prevState[folderName],
     }))
   }
 
-  const handleSubCategoryChange = (categoryId: number, subCategoryId: number) => {
-    setCheckedSubCategories((prevState) => ({
+  const handleExpandChange = (folderName: string) => {
+    setExpandedFolders((prevState) => ({
       ...prevState,
-      [categoryId]: {
-        ...prevState[categoryId],
-        [subCategoryId]: !prevState[categoryId]?.[subCategoryId],
-      },
+      [folderName]: !prevState[folderName],
     }))
   }
 
-  const handleSave = () => {
-    setIsModalOpen(true)
-  }
-
-  const handleModalToggle = () => {
-    setIsModalOpen(!isModalOpen)
-  }
+  const renderFolder = (folder: Folder, level = 0) => (
+    <div
+      key={folder.name}
+      style={{ marginLeft: level * 20, marginBottom: '10px' }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        {folder.children && (
+          <span
+            onClick={() => handleExpandChange(folder.name)}
+            style={{ cursor: 'pointer', marginRight: '5px' }}
+          >
+            {expandedFolders[folder.name] ? 'A' : 'F'}
+          </span>
+        )}
+        <Checkbox
+          checked={!!checkedFolders[folder.name]}
+          label={folder.name}
+          onChange={() => handleFolderChange(folder.name)}
+        />
+      </div>
+      {expandedFolders[folder.name] &&
+        folder.children &&
+        folder.children.map((child) => renderFolder(child, level + 1))}
+    </div>
+  )
 
   return (
     <div className="bg-muted-5 pa8">
-      <Box title="Product List">
-        {data?.categories.map((category) => (
-          <>
-          <div key={category.id} style={{marginBottom:"5px", marginTop:"10px"}}>
-            <Checkbox
-              checked={!!checkedCategories[category.id]}
-              label={category.name}
-              onChange={() => handleCategoryChange(category.id)}
-            />
-            <ul style={{ listStyleType: 'none'}}>
-              {category.subCategories.map((subCategory) => (
-                <li key={subCategory.id}>
-                  <Checkbox
-                    checked={!!checkedSubCategories[category.id]?.[subCategory.id]}
-                    label={subCategory.name}
-                    onChange={() => handleSubCategoryChange(category.id, subCategory.id)}
-                  />
-                </li>
-              ))}
-            </ul>
-           
-          </div>
-           <Divider />
-           </>
-        ))}
-      
-      </Box>
-      <div style={{marginTop:"10px"}}>
-      <Button onClick={handleSave} style={{marginTop:"10px"}}>Iniciar processamento</Button>
+      <Box title="Folder Tree">{data?.folder && renderFolder(data.folder)}</Box>
+      <div style={{ marginTop: '10px' }}>
+        <Button
+          onClick={() => console.log(checkedFolders)}
+          style={{ marginTop: '10px' }}
+        >
+          Iniciar processamento
+        </Button>
       </div>
-      <ModalComponent 
-        isModalOpen={isModalOpen} 
-        handleModalToggle={handleModalToggle} 
-        checkedCategories={checkedCategories} 
-        checkedSubCategories={checkedSubCategories} 
-      />
     </div>
   )
 }
