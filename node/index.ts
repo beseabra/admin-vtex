@@ -1,43 +1,43 @@
 import { Service } from '@vtex/api'
 
 const folder = {
-  name: "",
+  name: "Todos os Produtos",
   children: [
     {
-      name: "list",
+      name: "Eletrodomésticos",
       children: [
-        { name: "Avocados" },
-        { name: "Bananas" },
-        { name: "Berries" },
-        { name: "Oranges" },
-        { name: "Pears" },
+        { name: "Geladeiras" },
+        { name: "Máquinas de Lavar" },
+        { name: "Micro-ondas" },
+        { name: "Fogões" },
+        { name: "Fornos" },
       ],
     },
     {
-      name: "Drinks",
+      name: "Eletrônicos",	
       children: [
-        { name: "Apple Juice" },
-        { name: "Chocolate" },
-        { name: "Coffee" },
+        { name: "TVs" },
+        { name: "Smartphones" },
+        { name: "Câmeras" },
         {
-          name: "Tea",
+          name: "Computadores",
           children: [
-            { name: "Black Tea" },
-            { name: "Green Tea" },
-            { name: "Red Tea" },
-            { name: "Matcha" },
+            { name: "Laptops" },
+            { name: "Desktops" },
+            { name: "Monitores" },
+            { name: "Tablets" },
           ],
         },
       ],
     },
     {
-      name: "Vegetables",
+      name: "Móveis",
       children: [
-        { name: "Beets" },
-        { name: "Carrots" },
-        { name: "Celery" },
-        { name: "Lettuce" },
-        { name: "Onions" },
+        { name: "Sofás" },
+        { name: "Mesas" },
+        { name: "Cadeiras" },
+        { name: "Camas" },
+        { name: "Guarda-roupas"},
       ],
     },
   ],

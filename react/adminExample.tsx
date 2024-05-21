@@ -54,7 +54,7 @@ export default function AdminExample() {
             onClick={() => handleExpandChange(folder.name)}
             style={{ cursor: 'pointer', marginRight: '5px' }}
           >
-            {expandedFolders[folder.name] ? 'A' : 'F'}
+            {expandedFolders[folder.name] ? ' ↓' : '>'}
           </span>
         )}
         <Checkbox
